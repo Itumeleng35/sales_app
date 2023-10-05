@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and Display Dataset</title>
+</head>
+<body>
+    <h1>Upload and Display Dataset</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="alert alert-{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv">
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if dataset_name %}
+        <h2>Dataset Properties:</h2>
+        <p>Name: {{ dataset_name }}</p>
+        <p>Number of Columns: {{ num_columns }}</p>
+        <p>Number of Rows: {{ num_rows }}</p>
+    {% endif %}
+
+    {% if column_names %}
+    <h2>Column Names:</h2>
+    <ul>
+        {% for column_name in column_names %}
+            <li>{{ column_name }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>

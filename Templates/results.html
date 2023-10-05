@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+    {% if success_message %}
+        <div class="alert alert-success">
+            {{ success_message }}
+        </div>
+    {% endif %}
+    
+    <div>
+        {% if script %}
+            <h2>Bokeh Plot</h2>
+            <div>
+                {{ div|safe }}
+            </div>
+            <script>
+                {{ script|safe }}
+            </script>
+        {% else %}
+            <p>No data to display.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
